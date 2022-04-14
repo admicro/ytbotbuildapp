@@ -25,6 +25,8 @@ jobs:
     timeout-minutes: 720
     steps:
     - uses: actions/checkout@master
+    - name: docker registry login
+      run: echo "${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io --username admicro --password-stdin
     
     - name: Run task
       if: success()
